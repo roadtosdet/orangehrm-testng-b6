@@ -19,8 +19,16 @@ public class LoginTestRunner extends Setup {
     public void doLogin() throws IOException, ParseException {
         loginPage=new LoginPage(driver);
         JSONObject userObject= Utils.loadJSONFile("./src/test/resources/User.json");
-        String username= (String) userObject.get("username");
-        String password= (String) userObject.get("password");
+        String username, password;
+        if(System.getProperty("username")!=null && System.getProperty("password")!=null ){
+             username=System.getProperty("username");
+             password=System.getProperty("password");
+        }
+        else{
+             username= (String) userObject.get("username");
+             password= (String) userObject.get("password");
+        }
+
         driver.get("https://opensource-demo.orangehrmlive.com/");
         loginPage.doLogin(username, password);
 
