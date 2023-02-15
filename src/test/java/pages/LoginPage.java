@@ -12,6 +12,8 @@ public class LoginPage {
     WebElement txtPassword;
     @FindBy(css = "[type=submit]")
     WebElement btnLogin;
+    @FindBy(tagName = "p")
+    WebElement lblInvalidCreds;
 
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -20,5 +22,11 @@ public class LoginPage {
         txtUserName.sendKeys(username);
         txtPassword.sendKeys(password);
         btnLogin.click();
+    }
+    public String doLoginWithInvalidCreds(String username, String password){
+        txtUserName.sendKeys(username);
+        txtPassword.sendKeys(password);
+        btnLogin.click();
+        return lblInvalidCreds.getText();
     }
 }

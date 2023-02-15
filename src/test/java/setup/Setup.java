@@ -17,8 +17,9 @@ public class Setup {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.get("https://opensource-demo.orangehrmlive.com/");
     }
-    @AfterTest
+    //@AfterTest
     public void closeDriver(){
         DashboardPage dashboardPage=new DashboardPage(driver);
         dashboardPage.doLogout();
